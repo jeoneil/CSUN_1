@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Name: GUI
+Purpose: This file is an fxml file, which housed the framework for
+the User Interface of the application. It is tied to a controller class
+which handles the functionality of the fxml. This file does not contain any
+functionality without the Controller class. It can also be linked to a CSS
+file which can be used to manage the style and overall look of the user interface.
+This keeps the functionality separate from the visuals, allowing each to be edited
+independently.
+Author: Armando Freire
+Date:03/27/2016
+-->
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MP3Project.Controller">
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem fx:id="add" mnemonicParsing="false" onAction="#addSong" text="Add" />
+                        <MenuItem fx:id="remove" mnemonicParsing="false" onAction="#delete" text="Remove" />
+                        <MenuItem fx:id="importPlaylist" mnemonicParsing="false" onAction="#imPlay" text="Import Playlist" />
+                        <MenuItem fx:id="exportPlaylist" mnemonicParsing="false" onAction="#exPlay" text="Export Playlist" />
+                        <MenuItem fx:id="defaultPlaylist" mnemonicParsing="false" onAction="#dfPlay" text="Set as Default Playlist" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem fx:id="editMetadata" mnemonicParsing="false" onAction="#editM" text="Edit Metadata" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem fx:id="about" mnemonicParsing="false" onAction="#verNum" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <TableView fx:id="currPlaylist" onMouseClicked="#addAndUpdate" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="trackN" maxWidth="200.0" minWidth="50.0" prefWidth="50.0" text="#" />
+          <TableColumn fx:id="artist" maxWidth="300.0" minWidth="82.0" prefWidth="82.0" text="Artist" />
+            <TableColumn fx:id="name" maxWidth="350.0" minWidth="100.0" prefWidth="100.0" text="Title" />
+            <TableColumn fx:id="album" maxWidth="275.0" minWidth="75.0" prefWidth="75.0" text="Album" />
+            <TableColumn fx:id="genre" maxWidth="275.0" minWidth="75.0" prefWidth="75.0" text="Genre" />
+            <TableColumn fx:id="time" maxWidth="150.0" minWidth="75.0" prefWidth="75.0" text="Time" />
+        </columns>
+      </TableView>
+   </center>
+   <left>
+      <TreeView fx:id="libraryList" editable="true" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </padding>
+      </TreeView>
+   </left>
+   <bottom>
+      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <Slider fx:id="timeProgress" onMouseClicked="#changeTime">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Slider>
+            <HBox>
+               <children>
+                  <Button fx:id="rwd" mnemonicParsing="false" onAction="#rewind" text="Rwd">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="4.0" top="10.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="play" mnemonicParsing="false" onAction="#playAudio" text="Play">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="4.0" right="4.0" top="10.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="pause" mnemonicParsing="false" onAction="#pauseAudio" text="Pause">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="4.0" right="4.0" top="10.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="stop" mnemonicParsing="false" onAction="#stopAudio" text="Stop">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="4.0" right="4.0" top="10.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="fwd" mnemonicParsing="false" onAction="#forward" text="Fwd">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="4.0" right="4.0" top="10.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="prevAF" mnemonicParsing="false" onAction="#prevSong" text="Prev">
+                     <padding>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="4.0" right="4.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="nextAF" mnemonicParsing="false" onAction="#nextSong" text="Next">
+                     <padding>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="4.0" right="4.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Slider fx:id="volume" onDragDetected="#volumeChange">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Slider>
+                  <Label fx:id="timeDisplayLabel" alignment="CENTER" prefHeight="27.0" prefWidth="162.0" text="0:00 / 0:00" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Region prefHeight="43.0" prefWidth="62.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>
