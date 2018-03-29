@@ -1,5 +1,3 @@
-# CSUN_1
-
 ## Contents
 
 |     Project                             |   Class  |
